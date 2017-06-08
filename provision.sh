@@ -17,7 +17,7 @@ export LANG=en_US.UTF-8
 apt-get install -y --no-install-recommends apt-utils
 
 # Install ssh server
-apt-get -y install openssh-server pwgen
+apt-get -y install openssh-server pwgen openssl
 mkdir -p /var/run/sshd
 sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
