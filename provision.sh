@@ -44,7 +44,7 @@ ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 apt-get install -y php-cli php-dev php-pear \
 php-mysql php-pgsql php-sqlite3 php-soap \
 php-apcu php-json php-curl php-gd \
-php-gmp php-imap php-mcrypt php-xdebug \
+php-gmp php-imap php-mcrypt \
 php-memcached php-redis php-mbstring php-zip
 
 # Nginx & PHP-FPM
@@ -77,18 +77,6 @@ sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.0/fpm/php.ini
 sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini
 sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.0/fpm/php.ini
 sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.0/fpm/php.ini
-
-# Enable Remote xdebug
-echo "xdebug.remote_enable = 1" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.remote_connect_back = 1" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.remote_port = 9000" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.var_display_max_depth = -1" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.var_display_max_children = -1" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.var_display_max_data = -1" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo "xdebug.max_nesting_level = 500" >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-
-# Not xdebug when on cli
-phpdismod -s cli xdebug
 
 # Set The Nginx & PHP-FPM User
 sed -i '1 idaemon off;' /etc/nginx/nginx.conf
