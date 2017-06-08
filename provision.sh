@@ -30,6 +30,7 @@ make python2.7-dev python-pip re2c unattended-upgrades whois zip unzip
 
 # PPA
 apt-add-repository ppa:ondrej/php -y
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
 
 # Update Package Lists
 apt-get update
