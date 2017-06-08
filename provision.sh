@@ -20,9 +20,9 @@ sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
 sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 # Basic packages
-apt-get install -y sudo software-properties-common nano curl \
+apt-get install -y sudo software-properties-common curl \
 build-essential dos2unix gcc git git-flow libmcrypt4 libpcre3-dev apt-utils \
-make python2.7-dev python-pip re2c supervisor unattended-upgrades whois vim zip unzip
+make python2.7-dev python-pip re2c unattended-upgrades whois zip unzip
 
 # PPA
 apt-add-repository ppa:ondrej/php -y
@@ -94,9 +94,7 @@ sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.0/fpm/pool.d/www.conf
 # Install Node
 curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y nodejs
-npm install -g grunt-cli
 npm install -g gulp
-npm install -g bower
 
 # Install SQLite
 apt-get install -y sqlite3 libsqlite3-dev
