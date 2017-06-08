@@ -100,6 +100,8 @@ sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
 curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y nodejs
 npm install -g npm
+npm install -g node-gyp
+npm install -g node-pre-gyp
 npm install -g gulp
 
 # Install SQLite
