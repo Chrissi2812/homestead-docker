@@ -13,6 +13,9 @@ echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
 locale-gen en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Fixes: delaying package configuration, since apt-utils is not installed
+apt-get install -y --no-install-recommends apt-utils
+
 # Install ssh server
 apt-get -y install openssh-server pwgen
 mkdir -p /var/run/sshd
