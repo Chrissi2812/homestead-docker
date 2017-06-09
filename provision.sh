@@ -20,14 +20,14 @@ apt-get install -y software-properties-common curl
 apt-get install -y --no-install-recommends apt-utils
 
 # Install ssh server
-apt-get -y install openssh-server pwgen openssl
+apt-get install -y --no-install-recommends openssh-server pwgen openssl
 mkdir -p /var/run/sshd
 sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config
 sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config
 sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 # Basic packages
-apt-get install -y build-essential dos2unix gcc git libmcrypt4 libpcre3-dev ntp unzip \
+apt-get install -y --no-install-recommends build-essential dos2unix gcc git libmcrypt4 libpcre3-dev ntp unzip \
 make python2.7-dev python-pip re2c unattended-upgrades whois vim libnotify-bin \
 pv cifs-utils
 
@@ -52,7 +52,7 @@ usermod -aG www-data homestead
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # PHP
-apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+apt-get install -y --no-install-recommends --allow-downgrades --allow-remove-essential --allow-change-held-packages \
 php7.1-cli php7.1-dev \
 php7.1-pgsql php7.1-sqlite3 php7.1-gd \
 php7.1-curl php7.1-memcached \
@@ -98,14 +98,14 @@ sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
 
 # Install Node
 curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
-apt-get install -y nodejs
+apt-get install -y --no-install-recommends nodejs
 # npm install -g npm
 npm install -g node-gyp
 npm install -g node-pre-gyp
 npm install -g gulp
 
 # Memcached
-apt-get install -y memcached
+apt-get install -y --no-install-recommends memcached
 
 # Minimize The Disk Image
 echo "Minimizing disk image..."
