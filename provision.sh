@@ -227,14 +227,6 @@ rm /etc/nginx/sites-available/default
 cat > /etc/nginx/sites-enabled/default
 echo "$block" > "/etc/nginx/sites-enabled/default"
 
-service nginx restart
-service php7.1-fpm restart
-
-# Enable Swap Memory
-/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
-/sbin/mkswap /var/swap.1
-/sbin/swapon /var/swap.1
-
 # Minimize The Disk Image
 echo "Minimizing disk image..."
 dd if=/dev/zero of=/EMPTY bs=1M
