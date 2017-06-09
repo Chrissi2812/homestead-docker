@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM ubuntu:16.04
 MAINTAINER Jaouad E. <jaouad.elmoussaoui@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
