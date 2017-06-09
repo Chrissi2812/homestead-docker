@@ -8,8 +8,6 @@ ADD update.sh /update.sh
 ADD provision.sh /provision.sh
 ADD serve.sh /serve.sh
 
-ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
-
 RUN chmod +x /*.sh
 
 RUN ./update.sh
