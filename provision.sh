@@ -97,7 +97,7 @@ sed -i "s/;listen\.group.*/listen.group = homestead/" /etc/php/7.1/fpm/pool.d/ww
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
 
 # Install Node
-curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
+curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
 apt-get install -y --no-install-recommends nodejs
 # npm install -g npm
 npm install -g node-gyp
