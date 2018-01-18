@@ -62,6 +62,12 @@ php7.1-intl php7.1-readline php-fpm
 
 # Enable mcrypt
 phpenmod mcrypt
+phpenmod mbstring
+phpenmod memcached
+phpenmod mysql
+phpenmod soap
+phpenmod readline
+phpenmod curl
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
