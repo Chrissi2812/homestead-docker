@@ -1,5 +1,5 @@
 web:
-    image: shincoder/homestead:php7.0
+    image: chrissi2812/homestead:mini
     restart: always
     ports:
         - "8000:80" # web
