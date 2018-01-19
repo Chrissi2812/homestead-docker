@@ -130,8 +130,8 @@ fastcgi_param   REDIRECT_STATUS     200;
 EOF
 
 # Install Node
-curl --silent --location https://deb.nodesource.com/setup_6.x | bash -
-apt-get install -y nodejs
+curl --silent --location https://deb.nodesource.com/setup_8.x | bash -
+apt-get install -y --no-install-recommends nodejs
 # npm install -g npm
 npm install -g node-gyp
 npm install -g node-pre-gyp
