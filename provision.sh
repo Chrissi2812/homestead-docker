@@ -53,13 +53,13 @@ usermod -aG www-data homestead
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # PHP
-apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
-php7.1-cli php7.1-dev \
-php7.1-pgsql php7.1-sqlite3 php7.1-gd \
-php7.1-curl php7.1-memcached \
-php7.1-imap php7.1-mysql php7.1-mbstring \
-php7.1-xml php7.1-zip php7.1-bcmath php7.1-soap \
-php7.1-intl php7.1-readline php-xdebug
+apt-get install -y --no-install-recommends --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+php7.2-cli php7.2-dev \
+php7.2-pgsql php7.2-sqlite3 php7.2-gd \
+php7.2-curl php7.2-memcached \
+php7.2-imap php7.2-mysql php7.2-mbstring \
+php7.2-xml php7.2-zip php7.2-bcmath php7.2-soap \
+php7.2-intl php7.2-readline php-fpm
 
 # Nginx & PHP-FPM
 apt-get install -y nginx php-fpm
@@ -80,17 +80,17 @@ su homestead <<'EOF'
 EOF
 
 # Set Some PHP CLI Settings
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/cli/php.ini
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/cli/php.ini
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/cli/php.ini
-sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/cli/php.ini
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/cli/php.ini
+sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/cli/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/cli/php.ini
+sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/cli/php.ini
 
-sed -i "s/.*daemonize.*/daemonize = no/" /etc/php/7.1/fpm/php-fpm.conf
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.1/fpm/php.ini
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.1/fpm/php.ini
-sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.1/fpm/php.ini
-sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.1/fpm/php.ini
+sed -i "s/.*daemonize.*/daemonize = no/" /etc/php/7.2/fpm/php-fpm.conf
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.2/fpm/php.ini
+sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.2/fpm/php.ini
+sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.2/fpm/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.2/fpm/php.ini
+sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/7.2/fpm/php.ini
 
 # Set The Nginx & PHP-FPM User
 sed -i '1 idaemon off;' /etc/nginx/nginx.conf
@@ -98,12 +98,12 @@ sed -i "s/user www-data;/user homestead;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
 mkdir -p /run/php
-touch /run/php/php7.1-fpm.sock
-sed -i "s/user = www-data/user = homestead/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = homestead/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/;listen\.owner.*/listen.owner = homestead/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/;listen\.group.*/listen.group = homestead/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
+touch /run/php/php7.2-fpm.sock
+sed -i "s/user = www-data/user = homestead/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = homestead/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/;listen\.owner.*/listen.owner = homestead/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/;listen\.group.*/listen.group = homestead/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.2/fpm/pool.d/www.conf
 
 # Copy fastcgi_params to Nginx because they broke it on the PPA
 
@@ -210,7 +210,7 @@ block="server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
         fastcgi_index index.php;
         include fastcgi.conf;
     }
