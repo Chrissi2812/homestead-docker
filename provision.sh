@@ -108,6 +108,7 @@ apt-get install -y --no-install-recommends nodejs
 # npm install -g npm
 npm install -g node-gyp
 npm install -g node-pre-gyp
+npm install -g cross-env
 
 # Memcached
 apt-get install -y --no-install-recommends memcached
