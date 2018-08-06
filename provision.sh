@@ -29,7 +29,7 @@ sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 # Basic packages
 apt-get install -y --no-install-recommends build-essential dos2unix gcc git libmcrypt4 libpcre3-dev ntp unzip \
 make python2.7-dev python-pip re2c unattended-upgrades whois vim libnotify-bin \
-pv cifs-utils
+pv cifs-utils libpng-dev
 
 # PPA
 apt-add-repository ppa:nginx/development -y
